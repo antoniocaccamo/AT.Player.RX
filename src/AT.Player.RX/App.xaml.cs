@@ -22,9 +22,9 @@ namespace AT.Player.RX
             // Register the SimpleViewLocator.
             Locator.CurrentMutable.RegisterLazySingleton(() => new SimpleViewLocator(), typeof(IViewLocator));
 
-            Locator.CurrentMutable.RegisterConstant(new LoggerConfiguration().WriteTo.Console().CreateLogger(), typeof(Serilog.ILogger));
-
-            Locator.CurrentMutable.UseSerilogFullLogger();
+            // I only want to hear about errors
+            var logger = new DebugLogger() { Level = LogLevel.Error };
+            Locator.CurrentMutable.RegisterConstant(logger, typeof(Serilog.ILogger));
 
             Unosquare.FFME.Library.FFmpegDirectory = @"ffmpeg";
         }

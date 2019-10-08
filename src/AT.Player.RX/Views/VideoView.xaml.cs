@@ -18,6 +18,8 @@
 
             ViewModel = ViewModel ?? new VideoViewModel();
 
+            //ViewModel.MediaElement = mediaElement;
+
             this.WhenActivated(disposableRegistration =>
             {
                 this.Bind(ViewModel,
@@ -25,18 +27,18 @@
                        view => view.mediaElement.Source)
                    .DisposeWith(disposableRegistration);
 
-                //this.Bind(ViewModel,
-                //       viewModel => viewModel.MediaElement,
-                //       view => view.mediaElement)
-                //   .DisposeWith(disposableRegistration);
+                this.Bind(ViewModel,
+                       viewModel => viewModel.MediaElement,
+                       view => view.mediaElement)
+                   .DisposeWith(disposableRegistration);
 
                 this.BindCommand(ViewModel,
                         viewModel => viewModel.CommandPlay,
                         view => view.PlayButton
                 ).DisposeWith(disposableRegistration);
             });
-            ViewModel.MediaElement = mediaElement;
-            ViewModel.handleMediaElement();
+
+            //ViewModel.handleMediaElement();
         }
 
         #endregion Public Constructors

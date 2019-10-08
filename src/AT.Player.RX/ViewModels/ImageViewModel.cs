@@ -22,7 +22,7 @@
             IconUrl = new Uri("file:///E:/workspaces/antoniocaccamo/at-adv/html/weather/images/artlogo.png");
 
             this.WhenAnyValue(x => x.IconUrl)
-                .Subscribe(x => Console.WriteLine(x))
+                .Subscribe(x => this.Log().Info($"loaded image : {x}"))
             ;
         }
     }
