@@ -2,9 +2,9 @@
     xmlns:rxui="http://reactiveui.net"
     x:Class="AT.Player.RX.MainView"
     x:TypeArguments="vm:MainViewModel"
-    xmlns:vm="clr-namespace:AT.Player.RX"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:AT.Player.RX"
     Title="AT.Player.RX" Height="360" Width="620">
     <Grid>
         <Grid.RowDefinitions>

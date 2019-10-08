@@ -1,4 +1,4 @@
-﻿namespace AT.Player.RX.ViewModel
+﻿namespace AT.Player.RX.ViewModels
 {
     using NuGet.Configuration;
     using NuGet.Protocol;

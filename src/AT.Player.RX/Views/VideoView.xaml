@@ -1,16 +1,13 @@
-﻿<reactiveui:ReactiveUserControl
-             x:Class="AT.Player.RX.View.VideoView"
+﻿<v:BaseVideoView
+             x:Class="AT.Player.RX.Views.VideoView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:AT.Player.RX.View"
+             xmlns:v="clr-namespace:AT.Player.RX.Views"
              mc:Ignorable="d"
              xmlns:ffme="clr-namespace:Unosquare.FFME;assembly=ffme.win"
-             d:DesignHeight="450" d:DesignWidth="800"
-             xmlns:model="clr-namespace:AT.Player.RX.ViewModel"
-             xmlns:reactiveui="http://reactiveui.net"
-             x:TypeArguments="model:VideoViewModel">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -18,10 +15,11 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ffme:MediaElement x:Name="mediaElement" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <ffme:MediaElement x:Name="mediaElement"
+                           Background="Black" />
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15" Height="40">
             <Button x:Name="PlayButton" Content="Play.." />
         </StackPanel>
     </Grid>
-</reactiveui:ReactiveUserControl>
+</v:BaseVideoView>

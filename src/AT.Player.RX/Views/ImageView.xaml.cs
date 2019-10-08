@@ -1,6 +1,6 @@
-﻿namespace AT.Player.RX.View
+﻿namespace AT.Player.RX.Views
 {
-    using AT.Player.RX.ViewModel;
+    using AT.Player.RX.ViewModels;
     using ReactiveUI;
     using System.Reactive.Disposables;
     using System.Windows.Media.Imaging;
@@ -8,7 +8,7 @@
     /// <summary>
     /// Interaction logic for ImageView.xaml
     /// </summary>
-    public partial class ImageView : ReactiveUserControl<ImageViewModel>
+    public partial class ImageView : BaseImageView
     {
         public ImageView()
         {

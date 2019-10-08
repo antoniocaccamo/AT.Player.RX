@@ -1,14 +1,9 @@
-﻿using AT.Player.RX.ViewModel;
-using ReactiveUI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AT.Player.RX
+﻿namespace AT.Player.RX
 {
+    using AT.Player.RX.ViewModels;
+    using ReactiveUI;
+    using System.Reactive;
+
     public class MainViewModel : ReactiveObject, IScreen
     {
         // The Router associated with this Screen.

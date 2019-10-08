@@ -1,12 +1,14 @@
-﻿namespace AT.Player.RX.View
+﻿namespace AT.Player.RX.Views
 {
-    using AT.Player.RX.ViewModel;
+    using AT.Player.RX.ViewModels;
     using ReactiveUI;
+    using System.ComponentModel;
     using System.Reactive.Disposables;
 
     // MainWindow class derives off ReactiveWindow which implements the IViewFor<TViewModel>
     // interface using a WPF DependencyProperty. We need this to use WhenActivated extension method
     // that helps us handling View and ViewModel activation and deactivation.
+    [DesignTimeVisible(true)]
     public partial class NugetView : ReactiveUserControl<NugetViewModel>
     {
         public NugetView()

@@ -1,14 +1,14 @@
-﻿namespace AT.Player.RX.View
+﻿namespace AT.Player.RX.Views
 {
-    using AT.Player.RX.ViewModel;
+    using AT.Player.RX.ViewModels;
     using ReactiveUI;
-    using System;
     using System.Reactive.Disposables;
 
     /// <summary>
     /// Interaction logic for Video.xaml
     /// </summary>
-    public partial class VideoView : ReactiveUserControl<VideoViewModel>
+
+    public partial class VideoView : BaseVideoView
     {
         #region Public Constructors
 
@@ -26,15 +26,17 @@
                    .DisposeWith(disposableRegistration);
 
                 //this.Bind(ViewModel,
-                //       viewModel => viewModel.mediaElement,
+                //       viewModel => viewModel.MediaElement,
                 //       view => view.mediaElement)
                 //   .DisposeWith(disposableRegistration);
 
-                //this.BindCommand(ViewModel,
-                //        viewModel => viewModel.CommandPlay,
-                //        view => view.PlayButton
-                //).DisposeWith(disposableRegistration);
+                this.BindCommand(ViewModel,
+                        viewModel => viewModel.CommandPlay,
+                        view => view.PlayButton
+                ).DisposeWith(disposableRegistration);
             });
+            ViewModel.MediaElement = mediaElement;
+            ViewModel.handleMediaElement();
         }
 
         #endregion Public Constructors

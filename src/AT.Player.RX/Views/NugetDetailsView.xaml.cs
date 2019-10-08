@@ -1,7 +1,8 @@
-﻿namespace AT.Player.RX.View
+﻿namespace AT.Player.RX.Views
 {
-    using AT.Player.RX.ViewModel;
+    using AT.Player.RX.ViewModels;
     using ReactiveUI;
+    using System.ComponentModel;
     using System.Reactive.Disposables;
     using System.Windows.Media.Imaging;
 
@@ -9,6 +10,7 @@
     // our MainWindow when we register the ListBox with the collection of NugetDetailsViewModels if
     // no ItemTemplate has been declared it will search for a class derived off
     // IViewFor<NugetDetailsViewModel> and show that for the item.
+    [DesignTimeVisible(true)]
     public partial class NugetDetailsView : ReactiveUserControl<NugetDetailsViewModel>
     {
         public NugetDetailsView()

@@ -174,20 +174,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\VideoViewModel.cs" />
-    <Compile Include="View\AbstractVideoView.cs" />
-    <Compile Include="View\VideoView.xaml.cs">
+    <Compile Include="ViewModels\VideoViewModel.cs" />
+    <Compile Include="Views\BaseVideoView.cs" />
+    <Compile Include="Views\BaseImageView.cs" />
+    <Compile Include="Views\VideoView.xaml.cs">
       <DependentUpon>VideoView.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Page Include="MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ImageView.xaml">
+    <Page Include="Views\ImageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\NugetView.xaml">
+    <Page Include="Views\NugetView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -197,33 +199,36 @@
     </Compile>
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Service\LoggingService.cs" />
     <Compile Include="SimpleViewLocator.cs" />
-    <Compile Include="ViewModel\ImageViewModel.cs" />
-    <Compile Include="ViewModel\NugetViewModel.cs" />
+    <Compile Include="ViewModels\ImageViewModel.cs" />
+    <Compile Include="ViewModels\NugetViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
-    <Compile Include="View\ImageView.xaml.cs">
+    <Compile Include="Views\ImageView.xaml.cs">
       <DependentUpon>ImageView.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\NugetView.xaml.cs">
+    <Compile Include="Views\NugetView.xaml.cs">
       <DependentUpon>NugetView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\NugetDetailsView.xaml">
+    <Page Include="Views\NugetDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\VideoView.xaml">
+    <Page Include="Views\VideoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\NugetDetailsView.xaml.cs">
+    <Compile Include="Views\NugetDetailsView.xaml.cs">
       <DependentUpon>NugetDetailsView.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModel\NugetDetailsViewModel.cs" />
+    <Compile Include="ViewModels\NugetDetailsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -254,7 +259,7 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\Abstract\" />
+    <Folder Include="Views\Abstract\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\FFmpeg.Shared.4.0.2\build\FFmpeg.Shared.targets" Condition="Exists('..\packages\FFmpeg.Shared.4.0.2\build\FFmpeg.Shared.targets')" />
