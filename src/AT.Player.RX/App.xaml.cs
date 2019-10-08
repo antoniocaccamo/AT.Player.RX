@@ -1,7 +1,7 @@
-﻿using ReactiveUI;
+﻿using AT.Player.RX.Views;
+using ReactiveUI;
 using Serilog;
 using Splat;
-using Splat.Serilog;
 using System.Reflection;
 using System.Windows;
 
@@ -23,8 +23,23 @@ namespace AT.Player.RX
             Locator.CurrentMutable.RegisterLazySingleton(() => new SimpleViewLocator(), typeof(IViewLocator));
 
             // I only want to hear about errors
-            var logger = new DebugLogger() { Level = LogLevel.Error };
+            var logger = //new DebugLogger() { Level = LogLevel.Error }
+                new LoggerConfiguration()
+                    .MinimumLevel.Debug()
+                    .WriteTo.Console()
+                    .CreateLogger()
+            ;
             Locator.CurrentMutable.RegisterConstant(logger, typeof(Serilog.ILogger));
+
+            Locator.CurrentMutable.RegisterConstant(
+                "file:///c/development/workspaces/antoniocaccamo/at - adv/videos/default/at.video.mov",
+                typeof(VideoView)
+            );
+
+            Locator.CurrentMutable.RegisterConstant(
+                "file:///c/development/workspaces/antoniocaccamo/at - adv/videos/default/at.video.mov",
+                 typeof(ImageView)
+            );
 
             Unosquare.FFME.Library.FFmpegDirectory = @"ffmpeg";
         }

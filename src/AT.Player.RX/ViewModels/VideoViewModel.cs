@@ -30,7 +30,7 @@
 
             MediaElement = new MediaElement();
 
-            VideoSource = new Uri("file:///E:/workspaces/antoniocaccamo/2019-06-10-FuoriCinema%20(Vigan%C3%B2).mp4");
+            VideoSource = new Uri();
 
             CommandPlay = ReactiveCommand.CreateFromTask(async () => await MediaElement.Play());
             this.WhenAnyValue(x => x.MediaElement)
