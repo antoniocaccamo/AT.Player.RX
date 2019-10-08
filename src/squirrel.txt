@@ -1,0 +1,1 @@
+squirrel --releasify ..\nuget\AT.Player.1.0.0.nupkg -r ..\Releases

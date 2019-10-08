@@ -1,0 +1,35 @@
+﻿<reactiveui:ReactiveUserControl
+    x:Class="AT.Player.RX.View.NugetDetailsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:model="clr-namespace:AT.Player.RX.ViewModel"
+    xmlns:reactiveui="http://reactiveui.net"
+    x:TypeArguments="model:NugetDetailsViewModel">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image
+            x:Name="iconImage"
+            Width="64"
+            Height="64"
+            Margin="6"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" />
+        <TextBlock
+            Grid.Column="1"
+            Margin="6"
+            VerticalAlignment="Center"
+            TextWrapping="WrapWithOverflow">
+            <Run
+                x:Name="titleRun"
+                FontSize="14"
+                FontWeight="SemiBold" />
+            <LineBreak />
+            <Run x:Name="descriptionRun" FontSize="12" />
+            <LineBreak />
+            <Hyperlink x:Name="openButton">Open</Hyperlink>
+        </TextBlock>
+    </Grid>
+</reactiveui:ReactiveUserControl>

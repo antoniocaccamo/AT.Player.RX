@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>AT.Player</id>
+		<version>1.0.0</version>
+		<authors>support@arttechonline.com</authors>
+		<owners>support@arttechonline.com</owners>
+		<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+		<projectUrl>http://www.arttechonline.com</projectUrl>
+		<iconUrl>http://www.arttechonline.com/immagini/newlogo.jpg</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>AT Player goes hard !!!</description>
+		<releaseNotes>
+			First time  packaging...
+		</releaseNotes>
+		<copyright>Copyright 2019</copyright>
+
+		<dependencies>
+			<dependency id="Antlr3.Runtime" version="3.5.1"  />
+			<dependency id="Catel.Core" version="5.9.0"  />
+			<dependency id="Catel.Fody" version="3.8.0"  />
+			<dependency id="Catel.MVVM" version="5.9.0"  />
+			<dependency id="DeltaCompressionDotNet" version="1.1.0"  />
+			<dependency id="Expression.Blend.Sdk.WPF" version="1.0.1"  />
+			<dependency id="Fody" version="3.3.5"   />
+			<dependency id="Iesi.Collections" version="4.0.4"  />
+			<dependency id="Ionic.Zip" version="1.9.1.8"  />
+			<dependency id="log4net" version="2.0.8"  />
+			<dependency id="Microsoft.CSharp" version="4.5.0"  />
+			<dependency id="Mono.Cecil" version="0.9.6.1"  />
+			<dependency id="Newtonsoft.Json" version="12.0.1"  />
+			<dependency id="Orc.Controls" version="3.1.1"  />
+			<dependency id="Orc.FileSystem" version="3.0.0"  />
+			<dependency id="Orc.LogViewer" version="3.1.0"  />
+			<dependency id="Orc.Notifications" version="3.0.0"  />
+			<dependency id="Orc.Squirrel" version="3.0.0"  />
+			<dependency id="Orc.SystemInfo" version="3.0.0"  />
+			<dependency id="Orchestra.Core" version="5.1.5"  />
+			<dependency id="SharpCompress" version="0.17.1"  />
+			<dependency id="Splat" version="1.6.2"  />
+			<dependency id="squirrel.windows" version="1.8.0"  />
+			<dependency id="System.Collections.Immutable" version="1.5.0"  />
+			<dependency id="System.ComponentModel.Annotations" version="4.5.0"  />
+			<dependency id="System.Data.SQLite.Linq" version="1.0.109.0"  />
+			<dependency id="System.Dynamic.Runtime" version="4.3.0"  />
+			<dependency id="System.IO.FileSystem.Watcher" version="4.3.0"  />
+			<dependency id="System.Reflection" version="4.3.0"  />
+			<dependency id="System.Runtime.Serialization.Formatters" version="4.3.0"  />
+			<dependency id="System.Runtime.Serialization.Primitives" version="4.3.0"  />
+			<dependency id="System.Runtime.Serialization.Xml" version="4.3.0"  />
+			<dependency id="System.Threading.Timer" version="4.3.0"  />
+			<dependency id="System.Xml.XDocument" version="4.3.0"  />
+			<dependency id="System.Xml.XmlSerializer" version="4.3.0"  />
+		</dependencies>
+
+	</metadata>
+	<files>
+		<!-- Add a readme -->
+		<file src="..\readme.md" target="" />
+
+		<!-- Add files from an arbitrary folder that's not necessarily in the project 
+			
+		-->
+		<!--
+		<file src="..\lib\net45\*.*" target="" />
+		-->
+		<file src="..\src\AT.PLayer\bin\Release\*.*" target="lib\net45" />
+	</files>
+</package>

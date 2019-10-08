@@ -1,0 +1,30 @@
+﻿<rxui:ReactiveWindow
+    xmlns:rxui="http://reactiveui.net"
+    x:Class="AT.Player.RX.MainView"
+    x:TypeArguments="vm:MainViewModel"
+    xmlns:vm="clr-namespace:AT.Player.RX"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="AT.Player.RX" Height="360" Width="620">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <rxui:RoutedViewHost
+            Grid.Row="0"
+            x:Name="RoutedViewHost"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch">
+            <rxui:RoutedViewHost.DefaultContent>
+                <TextBlock Text="select" />
+            </rxui:RoutedViewHost.DefaultContent>
+        </rxui:RoutedViewHost>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15">
+            <Button x:Name="GoImageButton" Content="Go to Image.." />
+            <Button x:Name="GoVideoButton" Content="Go to Video.." Margin="5 0 0 0" />
+            <Button x:Name="GoNugetButton" Content="Go to Nuget" Margin="5 0 0 0" />
+            <Button x:Name="GoBackButton"   Content="Go back" Margin="5 0 0 0" />
+        </StackPanel>
+    </Grid>
+</rxui:ReactiveWindow>
