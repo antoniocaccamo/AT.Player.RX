@@ -30,7 +30,7 @@
 
             MediaElement = new MediaElement();
 
-            VideoSource = new Uri();
+            VideoSource = new Uri(Locator.Current -);
 
             CommandPlay = ReactiveCommand.CreateFromTask(async () => await MediaElement.Play());
             this.WhenAnyValue(x => x.MediaElement)
