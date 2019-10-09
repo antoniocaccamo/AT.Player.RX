@@ -1,5 +1,6 @@
 ﻿namespace AT.Player.RX.ViewModels
 {
+    using AT.Player.RX.Views;
     using ReactiveUI;
     using ReactiveUI.Fody.Helpers;
     using Splat;
@@ -17,9 +18,14 @@
         public ImageViewModel(IScreen screen = null)
         {
             HostScreen = screen ?? Locator.Current.GetService<IScreen>();
-            this.Log().Warn("Something bad happened");
 
-            IconUrl = new Uri("file:///E:/workspaces/antoniocaccamo/at-adv/html/weather/images/artlogo.png");
+            string imageUri = Locator.Current.GetService(typeof(ImageView)) as string;
+
+            this.Log().Warn($"image uri : {imageUri}");
+
+            IconUrl = new Uri(//"file:///E:/workspaces/antoniocaccamo/at-adv/html/weather/images/artlogo.png"
+                    imageUri
+                );
 
             this.WhenAnyValue(x => x.IconUrl)
                 .Subscribe(x => this.Log().Info($"loaded image : {x}"))

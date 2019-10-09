@@ -2,6 +2,7 @@
 {
     using AT.Player.RX.ViewModels;
     using ReactiveUI;
+    using ReactiveUI.Fody.Helpers;
     using System.Reactive;
 
     public class MainViewModel : ReactiveObject, IScreen
@@ -20,6 +21,9 @@
         // The command that navigates a user back.
         public ReactiveCommand<Unit, Unit> GoBack { get; }
 
+        [Reactive]
+        public bool SomeBoolValue { get; internal set; }
+
         public MainViewModel()
         {
             // Initialize the Router.
@@ -36,6 +40,8 @@
             GoBack = Router.NavigateBack;
 
             Router.Navigate.Execute(new ImageViewModel());
+
+            SomeBoolValue = false;
         }
     }
 }

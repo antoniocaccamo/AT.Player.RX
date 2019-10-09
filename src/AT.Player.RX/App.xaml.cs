@@ -2,6 +2,7 @@
 using ReactiveUI;
 using Serilog;
 using Splat;
+using System;
 using System.Reflection;
 using System.Windows;
 
@@ -25,19 +26,21 @@ namespace AT.Player.RX
             // I only want to hear about errors
             var logger = //new DebugLogger() { Level = LogLevel.Error }
                 new LoggerConfiguration()
-                    .MinimumLevel.Debug()
-                    .WriteTo.Console()
-                    .CreateLogger()
+                    // .Enrich.With(new ThreadIdEnricher())
+                    .WriteTo.Console(
+                        outputTemplate: "{Timestamp:HH:mm} [{Level}]  {Message}{NewLine}{Exception}")
+                    .CreateLogger();
             ;
             Locator.CurrentMutable.RegisterConstant(logger, typeof(Serilog.ILogger));
 
             Locator.CurrentMutable.RegisterConstant(
-                "file:///c/development/workspaces/antoniocaccamo/at - adv/videos/default/at.video.mov",
+                //"file:///E:/workspaces/antoniocaccamo/2019-06-10-FuoriCinema%20(Vigan%C3%B2).mp4",
+                "C:\\Program Files\\WindowsApps\\Microsoft.Windows.Photos_2019.19071.17920.0_x64__8wekyb3d8bbwe\\AppCS\\Assets\\NewsControl_WhatsNewMedia\\620x252_favorites.mp4",
                 typeof(VideoView)
             );
 
             Locator.CurrentMutable.RegisterConstant(
-                "file:///c/development/workspaces/antoniocaccamo/at - adv/videos/default/at.video.mov",
+                "file:///E:/workspaces/antoniocaccamo/at-adv/html/weather/images/artlogo.png",
                  typeof(ImageView)
             );
 

@@ -43,9 +43,9 @@
 
             <StackPanel
                 Grid.Row="1"
-                Grid.Column="1"
-                Margin="153.22,15,166,15"
+                Grid.Column="1" Margin="5"
                 HorizontalAlignment="Center"
+                VerticalAlignment="Center"
                 Orientation="Horizontal">
                 <Button x:Name="GoImageButton" Content="Go to Image.." />
                 <Button

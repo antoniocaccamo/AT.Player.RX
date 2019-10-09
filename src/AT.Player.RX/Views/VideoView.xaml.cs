@@ -2,7 +2,11 @@
 {
     using AT.Player.RX.ViewModels;
     using ReactiveUI;
+    using System;
     using System.Reactive.Disposables;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
 
     /// <summary>
     /// Interaction logic for Video.xaml
@@ -24,23 +28,74 @@
             {
                 this.Bind(ViewModel,
                        viewModel => viewModel.VideoSource,
-                       view => view.mediaElement.Source)
+                       view => view.me.Source)
                    .DisposeWith(disposableRegistration);
 
-                this.Bind(ViewModel,
-                       viewModel => viewModel.MediaElement,
-                       view => view.mediaElement)
+                //this.Bind(ViewModel,
+                //       viewModel => viewModel.MediaElement,
+                //       view => view.mediaElement)
+                //   .DisposeWith(disposableRegistration);
+
+                //this.BindCommand(ViewModel,
+                //        viewModel => viewModel.CommandPlay,
+                //        view => view.PlayButton
+                //).DisposeWith(disposableRegistration);
+
+                this.PlayButton.Events()
+                    .MouseDown
+                    .Subscribe(
+                          evt => me.Play()
+                        , ex => System.Console.WriteLine($"exception :{ex}")
+                        , () => System.Console.WriteLine($"done")
+                    );
+
+                this.me.Events()
+                    .MediaOpened
+                    .Subscribe( //new CountingButtonObserver()
+                        evt => { System.Console.WriteLine($"event MediaOpened :{evt}, me.Source : {me.Source}"); PlayButton.IsEnabled = true; },
+                        ex => System.Console.WriteLine($"exception :{ex}"),
+                        () => System.Console.WriteLine($"done")
+                    )
+                    .DisposeWith(disposableRegistration);
+                this.me.Events()
+                   .MediaEnded
+                   .Subscribe( //new CountingButtonObserver()
+                       evt => System.Console.WriteLine($"event MediaEnded :{evt}, me.Source : {me.Source}"),
+                       ex => System.Console.WriteLine($"exception :{ex}"),
+                       () => System.Console.WriteLine($"done")
+                   )
                    .DisposeWith(disposableRegistration);
 
-                this.BindCommand(ViewModel,
-                        viewModel => viewModel.CommandPlay,
-                        view => view.PlayButton
-                ).DisposeWith(disposableRegistration);
+                this.me.Events()
+                   .MediaFailed
+                   .Subscribe( //new CountingButtonObserver()
+                       evt => System.Console.WriteLine($"event MediaOpened:{evt}, me.Source : {me.Source}"),
+                       ex => System.Console.WriteLine($"exception :{ex}"),
+                       () => System.Console.WriteLine($"done")
+                   )
+                   .DisposeWith(disposableRegistration);
             });
-
-            //ViewModel.handleMediaElement();
         }
 
         #endregion Public Constructors
     }
+
+    //public class CountingButtonObserver : IObserver<RoutedEventArgs>
+    //{
+    //    private int _count = 0;
+    //    public Button Button { get; set; }
+
+    //    public void OnNext(RoutedEventArgs value)
+    //    {
+    //        System.Console.WriteLine($"event :{value}");
+    //    }
+
+    //    public void OnError(Exception exception)
+    //    {
+    //    }
+
+    //    public void OnCompleted()
+    //    {
+    //    }
+    //}
 }

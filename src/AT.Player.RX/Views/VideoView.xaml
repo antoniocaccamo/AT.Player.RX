@@ -15,11 +15,15 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ffme:MediaElement x:Name="mediaElement"
-                           Background="Black" />
+        <!--<ffme:MediaElement x:Name="mediaElement"
+                           Background="Black" />-->
+        <MediaElement HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      Stretch="Uniform"
+                      x:Name="me" LoadedBehavior="Manual" />
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15" Height="40">
-            <Button x:Name="PlayButton" Content="Play.." />
+            <Button x:Name="PlayButton" Content="Play.." IsEnabled="False" />
         </StackPanel>
     </Grid>
 </v:BaseVideoView>
