@@ -35,10 +35,26 @@
 
                 this.Bind(
                     ViewModel,
-                    vm => vm.Configuration.Size,
-                    v => v.DesiredSize,
-                    this.ViewModelToViewConverterFunc,
-                    this.ViewToViewModelConverterFunc
+                    vm => vm.Configuration.Size.Width,
+                    v => v.Width
+                ).DisposeWith(disposables);
+
+                this.Bind(
+                    ViewModel,
+                    vm => vm.Configuration.Size.Height,
+                    v => v.Height
+                ).DisposeWith(disposables);
+
+                this.Bind(
+                    ViewModel,
+                    vm => vm.Configuration.Location.Top,
+                    v => v.Top
+                ).DisposeWith(disposables);
+
+                this.Bind(
+                    ViewModel,
+                    vm => vm.Configuration.Location.Left,
+                    v => v.Left
                 ).DisposeWith(disposables);
 
                 this.WhenAnyValue(x => x.GoBackButton.IsMouseOver, x => x.ViewModel.SomeBoolValue,
@@ -58,16 +74,16 @@
 
         #region Private Methods
 
-        private System.Windows.Size ViewModelToViewConverterFunc(Model.Configuration.Size arg)
-        {
-            return new System.Windows.Size(arg.Width, arg.Height);
-        }
+        //private System.Windows.Size ViewModelToViewConverterFunc(Model.Configuration.Size arg)
+        //{
+        //    return new System.Windows.Size(arg.Width, arg.Height);
+        //}
 
-        private Model.Configuration.Size ViewToViewModelConverterFunc(System.Windows.Size arg)
-        {
-            Model.Configuration.Size size = new Model.Configuration.Size(arg.Width, arg.Height);
-            return size;
-        }
+        //private Model.Configuration.Size ViewToViewModelConverterFunc(System.Windows.Size arg)
+        //{
+        //    Model.Configuration.Size size = new Model.Configuration.Size(arg.Width, arg.Height);
+        //    return size;
+        //}
 
         #endregion Private Methods
     }

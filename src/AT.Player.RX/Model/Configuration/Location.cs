@@ -9,32 +9,32 @@ using System.Threading.Tasks;
 
 namespace AT.Player.RX.Model.Configuration
 {
-    public class Size : ReactiveObject, IEnableLogger
+    public class Location : ReactiveObject, IEnableLogger
     {
-        public Size()
+        public Location()
         {
-            this.WhenAnyValue(x => x.Width)
-                .Subscribe(l => this.Log().Info($"Width changed : {l}"))
+            this.WhenAnyValue(x => x.Left)
+                .Subscribe(l => this.Log().Info($"Left changed : {l}"))
               ;
 
-            this.WhenAnyValue(x => x.Height)
-                .Subscribe(l => this.Log().Info($"Height changed : {l}"))
+            this.WhenAnyValue(x => x.Top)
+                .Subscribe(l => this.Log().Info($"Top changed : {l}"))
               ;
         }
 
-        //public Size(double w, double h)
+        //public Location(double l, double t)
         //{
-        //    Width = w;
-        //    Height = h;
+        //    Left = l;
+        //    Top = t;
         //}
 
         #region Public Properties
 
         [Reactive]
-        public double Width { get; set; }
+        public double Top { get; set; }
 
         [Reactive]
-        public double Height { get; set; }
+        public double Left { get; set; }
 
         #endregion Public Properties
 
@@ -42,7 +42,7 @@ namespace AT.Player.RX.Model.Configuration
 
         public override string ToString()
         {
-            return $"Width [{Width}] Height [{Height}]";
+            return $"Top [{Top}] Left [{Left}]";
         }
 
         #endregion Public Methods

@@ -42,7 +42,8 @@ namespace AT.Player.RX
             );
 
             Locator.CurrentMutable.RegisterConstant(
-                "file:///E:/workspaces/antoniocaccamo/at-adv/html/weather/images/artlogo.png",
+               // "file:///E:/workspaces/antoniocaccamo/at-adv/html/weather/images/artlogo.png",
+               "C:\\Windows\\Web\\Wallpaper\\HP\\green_leaves.jpg",
                  typeof(ImageView)
             );
 

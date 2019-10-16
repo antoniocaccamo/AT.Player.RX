@@ -18,13 +18,17 @@ namespace AT.Player.RX.Model.Configuration
         [Reactive]
         public Size Size { get; set; }
 
+        public Location Location { get; set; }
+
         #endregion Public Properties
 
         #region Public Methods
 
         public override string ToString()
         {
-            return $" computer : [{Computer}] size [{Size}]";
+            return $" computer : [{Computer}] \n" +
+                $"\t size [{Size}]" +
+                $"\t location [{Location}]";
         }
 
         #endregion Public Methods

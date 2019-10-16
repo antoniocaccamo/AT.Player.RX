@@ -230,6 +230,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Configuration\Configuration.cs" />
+    <Compile Include="Model\Configuration\Location.cs" />
     <Compile Include="Model\Configuration\Size.cs" />
     <Compile Include="ViewModels\VideoViewModel.cs" />
     <Compile Include="Views\BaseVideoView.cs" />

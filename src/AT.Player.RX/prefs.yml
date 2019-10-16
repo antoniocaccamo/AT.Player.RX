@@ -22,8 +22,8 @@ size:
     width: 401
     height: 350
 location:
-    x: 542
-    y: 243
+    top: 542
+    left: 243
 mplayer:
     mode: IDLE
     path: E:/workspaces/antoniocaccamo/at-adv/mplayer/mplayer.exe
@@ -37,8 +37,8 @@ screens:
             width: 368
             height: 276
         location:
-            x: 50
-            y: 250
+            top: 50
+            left: 250
         sequence:
             file: C:/development/workspaces/antoniocaccamo/player/test.xseq
             loop:
