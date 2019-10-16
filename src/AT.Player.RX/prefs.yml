@@ -1,0 +1,67 @@
+# Loco yaml export: Generic nested YAML object
+# Project: prefs.properties conversion
+# Release: Working copy
+# Locale: it-IT, Italian (Italy)
+# Exported by: Unregistered user
+# Exported at: Wed, 16 Oct 2019 15:03:19 +0200
+---
+
+computer: antonio
+version:
+0: F1.3
+date: 20140601
+send:
+all:
+    mail: false
+enabled:
+log: true
+locale: en
+ftp:
+refresh: 0.02
+size:
+    width: 401
+    height: 350
+location:
+    x: 542
+    y: 243
+mplayer:
+    mode: IDLE
+    path: E:/workspaces/antoniocaccamo/at-adv/mplayer/mplayer.exe
+    options: -nosound -nosub -noautosub        
+weather:
+    latlng: "45.08,7.40"
+    refresh: 180
+screens:
+    -
+        size:
+            width: 368
+            height: 276
+        location:
+            x: 50
+            y: 250
+        sequence:
+            file: C:/development/workspaces/antoniocaccamo/player/test.xseq
+            loop:
+        number: 0
+        screen:
+        monitor: 1
+        lock: false
+        fade: false
+        alpha: 255
+        view: true
+        font:
+            time: 1|Verdana|42.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Verdana
+            date: 1|Segoe UI|36.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Segoe UI
+        color:
+            time: 255|0|255
+            date: 0|0|255
+        activation: 
+            type : TIMED
+            from: 09:30
+            to: 23:30
+            notActive: WATCH
+            image :
+        watch:
+        image:
+            file: 
+...

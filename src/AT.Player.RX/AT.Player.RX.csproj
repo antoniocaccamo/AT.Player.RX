@@ -229,6 +229,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Configuration\Configuration.cs" />
+    <Compile Include="Model\Configuration\Size.cs" />
     <Compile Include="ViewModels\VideoViewModel.cs" />
     <Compile Include="Views\BaseVideoView.cs" />
     <Compile Include="Views\BaseImageView.cs" />
@@ -302,6 +304,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="prefs.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

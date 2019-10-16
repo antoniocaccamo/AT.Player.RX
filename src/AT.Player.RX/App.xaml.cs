@@ -5,6 +5,8 @@ using Splat;
 using System;
 using System.Reflection;
 using System.Windows;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace AT.Player.RX
 {
@@ -45,6 +47,16 @@ namespace AT.Player.RX
             );
 
             Unosquare.FFME.Library.FFmpegDirectory = @"ffmpeg";
+
+            var deserializer = new DeserializerBuilder()
+                                        .WithNamingConvention(new CamelCaseNamingConvention())
+                                        .IgnoreUnmatchedProperties()
+                                        .Build();
+            var configuration = deserializer.Deserialize<Model.Configuration.Configuration>(System.IO.File.ReadAllText(@"prefs.yml"));
+
+            Console.WriteLine($"configuration : ${configuration}");
+
+            Locator.CurrentMutable.RegisterConstant(configuration, typeof(Model.Configuration.Configuration));
         }
     }
 }

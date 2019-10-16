@@ -8,7 +8,7 @@
     using System.Reactive;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using System.Windows.Controls;
+    using Unosquare.FFME;
 
     public class VideoViewModel : ReactiveObject, IRoutableViewModel, IEnableLogger
     {
@@ -22,28 +22,25 @@
 
             this.Log().Warn($"video uri : {videoUri}");
 
+            MediaElement = new MediaElement();
+
             VideoSource = new Uri(videoUri);
 
-            //CommandPlay = ReactiveCommand.CreateFromTask(
-            //    () => new Task<bool>(
-            //                () =>
-            //                {
-            //                    MediaElement.Play();
-            //                    return true;
-            //                }
-            //          )
+            //CommandPlay = ReactiveCommand.CreateFromTask<bool>(async () =>
+            //{
+            //    this.Log().Info($"pressed : [{MediaElement}]");
+            //    return await MediaElement.Play();
+            //}
             //);
             //this.WhenAnyValue(x => x.MediaElement)
             //    .Subscribe(x => this.Log().Info($"x.Source : {x.Source}"));
 
-            //this.WhenAnyValue(x => x.VideoSource)
-            //    .Subscribe(x => MediaElement.Source = x);
+            this.WhenAnyValue(x => x.VideoSource)
+                .Subscribe(x => MediaElement.Source = x);
 
             //CommandPlay
             //    .ThrownExceptions.Subscribe(error => this.Log().Error($"error : {error}"))
             //    ;
-
-            //HandleMediaElement();
         }
 
         #endregion Public Constructors
@@ -51,14 +48,14 @@
         #region Public Properties
 
         //public ReactiveCommand<Unit, bool> CommandPlay { get; }
+
         public IScreen HostScreen { get; }
 
-        [Reactive]
+        //[Reactive]
         public MediaElement MediaElement { get; set; }
 
         public string UrlPathSegment => "video";
 
-        //public ReactiveCommand<Unit, IRoutableViewModel> CommandPlay { get; }
         [Reactive]
         public Uri VideoSource { get; internal set; }
 
@@ -72,7 +69,7 @@
             MediaElement.BufferingStarted += (sdr, evt) => { this.Log().Info($"BufferingStarted"); };
             MediaElement.BufferingEnded += (sdr, evt) => { this.Log().Info($"BufferingEnded"); };
             MediaElement.MediaEnded += (sdr, evt) => { this.Log().Info($"MediaEnded"); };
-            //MediaElement.  += (sdr, evt) => { this.Log().Info($"PositionChanged {evt.Position}"); };
+            MediaElement.PositionChanged += (sdr, evt) => { this.Log().Info($"PositionChanged {evt.Position}"); };
             MediaElement.MediaFailed += (sdr, evt) => { this.Log().Info($"MediaFailed"); };
         }
 

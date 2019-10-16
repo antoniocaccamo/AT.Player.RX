@@ -2,6 +2,7 @@
 {
     using AT.Player.RX.ViewModels;
     using ReactiveUI;
+    using Splat;
     using System;
     using System.Reactive.Disposables;
     using System.Windows;
@@ -12,7 +13,7 @@
     /// Interaction logic for Video.xaml
     /// </summary>
 
-    public partial class VideoView : BaseVideoView
+    public partial class VideoView : BaseVideoView, IEnableLogger
     {
         #region Public Constructors
 
@@ -22,7 +23,9 @@
 
             ViewModel = ViewModel ?? new VideoViewModel();
 
-            //ViewModel.MediaElement = mediaElement;
+            ViewModel.MediaElement = me;
+
+            ViewModel.HandleMediaElement();
 
             this.WhenActivated(disposableRegistration =>
             {
@@ -31,9 +34,11 @@
                        view => view.me.Source)
                    .DisposeWith(disposableRegistration);
 
-                //this.Bind(ViewModel,
+                //this.OneWayBind(ViewModel,
                 //       viewModel => viewModel.MediaElement,
-                //       view => view.mediaElement)
+                //       view => view.grid,
+                //       grid.Children.Add(ViewModel.MediaElement)
+                //   )
                 //   .DisposeWith(disposableRegistration);
 
                 //this.BindCommand(ViewModel,
@@ -49,48 +54,57 @@
                 //        , () => System.Console.WriteLine($"done")
                 //    );
 
-                this.me.Events()
-                    .MediaOpened
-                    .Subscribe( //new CountingButtonObserver()
-                        evt =>
-                        {
-                            System.Console.WriteLine($"event MediaOpened :{evt}, me.Source : {me.Source}");
-                            //me.Play();
-                        },
-                        ex => System.Console.WriteLine($"exception :{ex}"),
-                        () => System.Console.WriteLine($"done")
-                    )
-                    .DisposeWith(disposableRegistration);
+                //this.me.Events()
+                //    .MediaOpened
+                //    .Subscribe( //new CountingButtonObserver()
+                //        evt =>
+                //        {
+                //            System.Console.WriteLine($"event MediaOpened :{evt}, me.Source : {me.Source}");
+                //            //me.Play();
+                //        },
+                //        ex => System.Console.WriteLine($"exception :{ex}"),
+                //        () => System.Console.WriteLine($"done")
+                //    )
+                //    .DisposeWith(disposableRegistration);
 
-                this.me.Events()
-                   .MediaEnded
-                   .Subscribe( //new CountingButtonObserver()
-                       evt => System.Console.WriteLine($"event MediaEnded :{evt}, me.Source : {me.Source}"),
-                       ex => System.Console.WriteLine($"exception :{ex}"),
-                       () => System.Console.WriteLine($"done")
-                   )
-                   .DisposeWith(disposableRegistration);
+                //this.me.Events()
+                //   .MediaEnded
+                //   .Subscribe( //new CountingButtonObserver()
+                //       evt => System.Console.WriteLine($"event MediaEnded :{evt}, me.Source : {me.Source}"),
+                //       ex => System.Console.WriteLine($"exception :{ex}"),
+                //       () => System.Console.WriteLine($"done")
+                //   )
+                //   .DisposeWith(disposableRegistration);
 
-                this.me.Events()
-                   .MediaFailed
-                   .Subscribe( //new CountingButtonObserver()
-                       evt =>
-                       {
-                           System.Console.WriteLine($"event MediaFailed:{evt}, me.Source : {me.Source}");
-                           //      PlayButton.IsEnabled = false;
-                       },
-                       ex => System.Console.WriteLine($"exception :{ex}"),
-                       () => System.Console.WriteLine($"done")
-                   )
-                   .DisposeWith(disposableRegistration);
+                //this.me.Events()
+                //   .MediaFailed
+                //   .Subscribe( //new CountingButtonObserver()
+                //       evt =>
+                //       {
+                //           System.Console.WriteLine($"event MediaFailed:{evt}, me.Source : {me.Source}");
+                //           //      PlayButton.IsEnabled = false;
+                //       },
+                //       ex => System.Console.WriteLine($"exception :{ex}"),
+                //       () => System.Console.WriteLine($"done")
+                //   )
+                //   .DisposeWith(disposableRegistration);
             });
         }
 
         #endregion Public Constructors
 
+        private async System.Threading.Tasks.Task PlayButton_ClickAsync(object sender, RoutedEventArgs e)
+        {
+            this.Log().Info("PlayButton_ClickAsync...");
+            await me.Play();
+        }
+
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
+            this.Log().Info("PlayButton_Click...");
+            // me.Position = TimeSpan.Zero;
             me.Play();
+            //_ = new Action(() => PlayButton_ClickAsync(sender, e));
         }
     }
 

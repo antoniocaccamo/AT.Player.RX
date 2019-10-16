@@ -1,8 +1,10 @@
 ﻿namespace AT.Player.RX
 {
+    using AT.Player.RX.Model.Configuration;
     using AT.Player.RX.ViewModels;
     using ReactiveUI;
     using ReactiveUI.Fody.Helpers;
+    using Splat;
     using System.Reactive;
 
     public class MainViewModel : ReactiveObject, IScreen
@@ -24,6 +26,9 @@
         [Reactive]
         public bool SomeBoolValue { get; internal set; }
 
+        [Reactive]
+        public Configuration Configuration { get; internal set; }
+
         public MainViewModel()
         {
             // Initialize the Router.
@@ -42,6 +47,8 @@
             Router.Navigate.Execute(new ImageViewModel());
 
             SomeBoolValue = false;
+
+            Configuration = Locator.Current.GetService(typeof(Configuration)) as Configuration;
         }
     }
 }

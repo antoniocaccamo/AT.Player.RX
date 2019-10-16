@@ -1,7 +1,10 @@
 ﻿namespace AT.Player.RX
 {
+    using AT.Player.RX.Model.Configuration;
     using ReactiveUI;
+    using System;
     using System.Reactive.Disposables;
+    using System.Windows;
     using System.Windows.Media;
 
     /// <summary>
@@ -9,6 +12,8 @@
     /// </summary>
     public partial class MainView : ReactiveWindow<MainViewModel>
     {
+        #region Public Constructors
+
         public MainView()
         {
             InitializeComponent();
@@ -28,6 +33,14 @@
                 this.BindCommand(ViewModel, x => x.GoBack, x => x.GoBackButton)
                     .DisposeWith(disposables);
 
+                this.Bind(
+                    ViewModel,
+                    vm => vm.Configuration.Size,
+                    v => v.DesiredSize,
+                    this.ViewModelToViewConverterFunc,
+                    this.ViewToViewModelConverterFunc
+                ).DisposeWith(disposables);
+
                 this.WhenAnyValue(x => x.GoBackButton.IsMouseOver, x => x.ViewModel.SomeBoolValue,
                       (isMouseOver, boolValue) =>
                       {
@@ -40,5 +53,22 @@
                       .DisposeWith(disposables);
             });
         }
+
+        #endregion Public Constructors
+
+        #region Private Methods
+
+        private System.Windows.Size ViewModelToViewConverterFunc(Model.Configuration.Size arg)
+        {
+            return new System.Windows.Size(arg.Width, arg.Height);
+        }
+
+        private Model.Configuration.Size ViewToViewModelConverterFunc(System.Windows.Size arg)
+        {
+            Model.Configuration.Size size = new Model.Configuration.Size(arg.Width, arg.Height);
+            return size;
+        }
+
+        #endregion Private Methods
     }
 }
