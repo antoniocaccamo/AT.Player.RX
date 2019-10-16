@@ -1,5 +1,7 @@
 os : windows
 language : csharp
+mono:
+  - latest
 solution : src/AT.Player.RX.sln
 script:
   - nuget restore src/AT.Player.RX.sln
