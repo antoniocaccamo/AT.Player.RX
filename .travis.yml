@@ -4,5 +4,6 @@ mono:
   - latest
 solution : src/AT.Player.RX.sln
 script:
+  - choco install dotnet4.7.2
   - nuget restore src/AT.Player.RX.sln
   - msbuild /p:Configuration=Release src/AT.Player.RX.sln
