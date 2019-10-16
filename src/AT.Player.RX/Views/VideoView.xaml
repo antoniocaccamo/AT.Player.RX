@@ -7,23 +7,33 @@
              xmlns:v="clr-namespace:AT.Player.RX.Views"
              mc:Ignorable="d"
              xmlns:ffme="clr-namespace:Unosquare.FFME;assembly=ffme.win"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="450" d:DesignWidth="800" BorderThickness="5" BorderBrush="Green">
+    <Grid HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!--<ffme:MediaElement x:Name="mediaElement"
                            Background="Black" />-->
+
+        <MediaElement HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      Stretch="Fill" LoadedBehavior="Manual"
+                      x:Name="me" />
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15" Height="40">
+            <Button x:Name="PlayButton" Content="Play.." Click="PlayButton_Click" />
+        </StackPanel>
+    </Grid>
+
+    <!--<StackPanel>
         <MediaElement HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
                       Stretch="Uniform"
-                      x:Name="me" LoadedBehavior="Manual" />
-
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15" Height="40">
-            <Button x:Name="PlayButton" Content="Play.." IsEnabled="False" />
-        </StackPanel>
-    </Grid>
+                      LoadedBehavior="Play" UnloadedBehavior="Close"
+                      x:Name="me" />
+    </StackPanel>-->
 </v:BaseVideoView>

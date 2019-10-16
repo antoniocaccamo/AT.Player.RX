@@ -33,17 +33,17 @@
             //                }
             //          )
             //);
-            this.WhenAnyValue(x => x.MediaElement)
-                .Subscribe(x => this.Log().Info($"x.Source : {x.Source}"));
+            //this.WhenAnyValue(x => x.MediaElement)
+            //    .Subscribe(x => this.Log().Info($"x.Source : {x.Source}"));
 
-            this.WhenAnyValue(x => x.VideoSource)
-                .Subscribe(x => MediaElement.Source = x);
+            //this.WhenAnyValue(x => x.VideoSource)
+            //    .Subscribe(x => MediaElement.Source = x);
 
             //CommandPlay
             //    .ThrownExceptions.Subscribe(error => this.Log().Error($"error : {error}"))
             //    ;
 
-            HandleMediaElement();
+            //HandleMediaElement();
         }
 
         #endregion Public Constructors

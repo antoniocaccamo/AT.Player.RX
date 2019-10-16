@@ -41,22 +41,27 @@
                 //        view => view.PlayButton
                 //).DisposeWith(disposableRegistration);
 
-                this.PlayButton.Events()
-                    .MouseDown
-                    .Subscribe(
-                          evt => me.Play()
-                        , ex => System.Console.WriteLine($"exception :{ex}")
-                        , () => System.Console.WriteLine($"done")
-                    );
+                //this.PlayButton.Events()
+                //    .MouseDoubleClick
+                //    .Subscribe(
+                //          evt => me.Play()
+                //        , ex => System.Console.WriteLine($"exception :{ex}")
+                //        , () => System.Console.WriteLine($"done")
+                //    );
 
                 this.me.Events()
                     .MediaOpened
                     .Subscribe( //new CountingButtonObserver()
-                        evt => { System.Console.WriteLine($"event MediaOpened :{evt}, me.Source : {me.Source}"); PlayButton.IsEnabled = true; },
+                        evt =>
+                        {
+                            System.Console.WriteLine($"event MediaOpened :{evt}, me.Source : {me.Source}");
+                            //me.Play();
+                        },
                         ex => System.Console.WriteLine($"exception :{ex}"),
                         () => System.Console.WriteLine($"done")
                     )
                     .DisposeWith(disposableRegistration);
+
                 this.me.Events()
                    .MediaEnded
                    .Subscribe( //new CountingButtonObserver()
@@ -69,7 +74,11 @@
                 this.me.Events()
                    .MediaFailed
                    .Subscribe( //new CountingButtonObserver()
-                       evt => System.Console.WriteLine($"event MediaOpened:{evt}, me.Source : {me.Source}"),
+                       evt =>
+                       {
+                           System.Console.WriteLine($"event MediaFailed:{evt}, me.Source : {me.Source}");
+                           //      PlayButton.IsEnabled = false;
+                       },
                        ex => System.Console.WriteLine($"exception :{ex}"),
                        () => System.Console.WriteLine($"done")
                    )
@@ -78,6 +87,11 @@
         }
 
         #endregion Public Constructors
+
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            me.Play();
+        }
     }
 
     //public class CountingButtonObserver : IObserver<RoutedEventArgs>

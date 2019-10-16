@@ -10,7 +10,7 @@
     x:TypeArguments="vm:MainViewModel">
 
     <DockPanel>
-        <Menu DockPanel.Dock="Top" IsMainMenu="True">
+        <!--<Menu DockPanel.Dock="Top" IsMainMenu="True" Height="40">
             <MenuItem Header="_File">
                 <MenuItem Header="_New" />
                 <MenuItem Header="_Open" />
@@ -18,49 +18,53 @@
                 <Separator />
                 <MenuItem Header="_Exit" />
             </MenuItem>
-        </Menu>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="13*" />
-                <ColumnDefinition Width="599*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
+        </Menu>-->
+        <StackPanel Background="#FF109797"
+                DockPanel.Dock="Top"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+            <Button x:Name="GoImageButton" Content="Go to Image.." />
+            <Button
+                    x:Name="GoVideoButton"
+                    Margin="5,0,0,0"
+                    Content="Go to Video.." />
+            <Button
+                    x:Name="GoNugetButton"
+                    Margin="5,0,0,0"
+                    Content="Go to Nuget" />
+            <Button
+                    x:Name="GoBackButton"
+                    Margin="5,0,0,0"
+                    Content="Go back" />
+        </StackPanel>
+        <!--<WrapPanel Background="Black">
             <rxui:RoutedViewHost
                 x:Name="RoutedViewHost"
-                Grid.Row="0"
-                Grid.ColumnSpan="2"
+
                 HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Stretch">
                 <rxui:RoutedViewHost.DefaultContent>
                     <TextBlock Text="select" />
                 </rxui:RoutedViewHost.DefaultContent>
             </rxui:RoutedViewHost>
+        </WrapPanel>-->
 
-            <StackPanel
-                Grid.Row="1"
-                Grid.Column="1" Margin="5"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                <Button x:Name="GoImageButton" Content="Go to Image.." />
-                <Button
-                    x:Name="GoVideoButton"
-                    Margin="5,0,0,0"
-                    Content="Go to Video.." />
-                <Button
-                    x:Name="GoNugetButton"
-                    Margin="5,0,0,0"
-                    Content="Go to Nuget" />
-                <Button
-                    x:Name="GoBackButton"
-                    Margin="5,0,0,0"
-                    Content="Go back" />
-            </StackPanel>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <rxui:RoutedViewHost
+                x:Name="RoutedViewHost"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch">
+                <rxui:RoutedViewHost.DefaultContent>
+                    <TextBlock Text="select" />
+                </rxui:RoutedViewHost.DefaultContent>
+            </rxui:RoutedViewHost>
         </Grid>
     </DockPanel>
 </rxui:ReactiveWindow>
