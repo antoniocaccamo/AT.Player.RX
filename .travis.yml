@@ -1,3 +1,6 @@
 os : windows
 language : csharp
 solution : src/AT.Player.RX.sln
+script:
+  - nuget restore src/AT.Player.RX.sln
+  - msbuild /p:Configuration=Release src/AT.Player.RX.sln
