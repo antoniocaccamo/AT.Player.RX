@@ -8,21 +8,14 @@ using System.Threading.Tasks;
 
 namespace AT.Player.RX.Model.Configuration
 {
-    public class Configuration : ReactiveObject
+    public class Screen : ReactiveObject
     {
         #region Public Properties
-
-        [Reactive]
-        public string Computer { get; set; }
 
         [Reactive]
         public Size Size { get; set; }
 
         public Location Location { get; set; }
-
-        public Dummy Dummy { get; set; }
-
-        public IEnumerable<Screen> screens { get; set; }
 
         #endregion Public Properties
 
@@ -30,11 +23,7 @@ namespace AT.Player.RX.Model.Configuration
 
         public override string ToString()
         {
-            return $"dummy : [{Dummy}]\n"
-                + $"\tcomputer : [{Computer}]\n"
-                + $"\tsize [{Size}]\n"
-                + $"\tlocation [{Location}]\n"
-                + $"\tscreens [{screens}]\n"; ;
+            return $"size [{Size}] location [{Location}]";
         }
 
         #endregion Public Methods

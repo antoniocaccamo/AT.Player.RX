@@ -242,6 +242,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Configuration\Screen.cs" />
     <Compile Include="Model\Configuration\Configuration.cs" />
     <Compile Include="Model\Configuration\Dummy.cs" />
     <Compile Include="Model\Configuration\Location.cs" />

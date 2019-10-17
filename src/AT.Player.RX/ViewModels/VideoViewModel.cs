@@ -53,11 +53,11 @@ namespace AT.Player.RX.ViewModels
             MediaElement.BufferingStarted += (sdr, evt) => { logger.Information($"BufferingStarted"); };
             MediaElement.BufferingEnded += (sdr, evt) => { logger.Information($"BufferingEnded"); };
 
-            MediaElement.MediaOpened += (sdr, evt) => { logger.Information($"MediaOpened {evt}"); };
+            MediaElement.MediaOpened += (sdr, evt) => { logger.Information($"MediaOpened {evt.Info.Duration}"); };
             MediaElement.MediaEnded += async (sdr, evt) => { logger.Information($"MediaEnded"); await MediaElement.Stop(); };
             MediaElement.MediaFailed += (sdr, evt) => { logger.Information($"MediaFailed"); };
 
-            MediaElement.Loaded += (sdr, evt) => { logger.Information($"Loaded : NaturalDuration {MediaElement.NaturalDuration}"); };
+            MediaElement.Loaded += (sdr, evt) => { logger.Information($"Loaded  {evt}"); };
             MediaElement.PositionChanged += (sdr, evt) => { logger.Information($"PositionChanged {evt.Position}"); };
         }
 
