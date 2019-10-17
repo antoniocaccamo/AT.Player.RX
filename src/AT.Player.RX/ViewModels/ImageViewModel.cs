@@ -1,4 +1,7 @@
-﻿namespace AT.Player.RX.ViewModels
+﻿/// <summary>
+///
+/// </summary>
+namespace AT.Player.RX.ViewModels
 {
     using AT.Player.RX.Views;
     using ReactiveUI;
@@ -6,8 +9,10 @@
     using Splat;
     using System;
 
-    public class ImageViewModel : ReactiveObject, IRoutableViewModel, IEnableLogger
+    public class ImageViewModel : ReactiveObject, IRoutableViewModel
     {
+        private static readonly Serilog.ILogger logger = Locator.Current.GetService(typeof(Serilog.ILogger)) as Serilog.ILogger;
+
         public string UrlPathSegment => "image";
 
         public IScreen HostScreen { get; }
@@ -21,14 +26,12 @@
 
             string imageUri = Locator.Current.GetService(typeof(ImageView)) as string;
 
-            this.Log().Warn($"image uri : {imageUri}");
+            logger.Warning("image uri : {imageUri}", imageUri);
 
-            IconUrl = new Uri(//"file:///E:/workspaces/antoniocaccamo/at-adv/html/weather/images/artlogo.png"
-                    imageUri
-                );
+            IconUrl = new Uri(imageUri);
 
             this.WhenAnyValue(x => x.IconUrl)
-                .Subscribe(x => this.Log().Info($"loaded image : {x}"))
+                .Subscribe(x => logger.Information("IconUrl changed image : {x}", x))
             ;
         }
     }

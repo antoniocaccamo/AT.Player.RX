@@ -1,4 +1,7 @@
-﻿namespace AT.Player.RX.ViewModels
+﻿/// <summary>
+///
+/// </summary>
+namespace AT.Player.RX.ViewModels
 {
     using AT.Player.RX.Views;
     using ReactiveUI;
@@ -12,6 +15,8 @@
 
     public class VideoViewModel : ReactiveObject, IRoutableViewModel, IEnableLogger
     {
+        private static readonly Serilog.ILogger logger = Locator.Current.GetService(typeof(Serilog.ILogger)) as Serilog.ILogger;
+
         #region Public Constructors
 
         public VideoViewModel(IScreen screen = null)
@@ -19,35 +24,15 @@
             HostScreen = screen ?? Locator.Current.GetService<IScreen>();
 
             string videoUri = Locator.Current.GetService(typeof(VideoView)) as string;
-
-            this.Log().Warn($"video uri : {videoUri}");
-
-            MediaElement = new MediaElement();
+            bool exists = System.IO.File.Exists(videoUri);
+            logger.Information("video uri : {videoUri} exists : {exists}", videoUri, exists);
 
             VideoSource = new Uri(videoUri);
-
-            //CommandPlay = ReactiveCommand.CreateFromTask<bool>(async () =>
-            //{
-            //    this.Log().Info($"pressed : [{MediaElement}]");
-            //    return await MediaElement.Play();
-            //}
-            //);
-            //this.WhenAnyValue(x => x.MediaElement)
-            //    .Subscribe(x => this.Log().Info($"x.Source : {x.Source}"));
-
-            this.WhenAnyValue(x => x.VideoSource)
-                .Subscribe(x => MediaElement.Source = x);
-
-            //CommandPlay
-            //    .ThrownExceptions.Subscribe(error => this.Log().Error($"error : {error}"))
-            //    ;
         }
 
         #endregion Public Constructors
 
         #region Public Properties
-
-        //public ReactiveCommand<Unit, bool> CommandPlay { get; }
 
         public IScreen HostScreen { get; }
 
@@ -65,12 +50,15 @@
 
         public void HandleMediaElement()
         {
-            MediaElement.MediaOpened += (sdr, evt) => { this.Log().Info($"MediaOpened {evt}"); };
-            MediaElement.BufferingStarted += (sdr, evt) => { this.Log().Info($"BufferingStarted"); };
-            MediaElement.BufferingEnded += (sdr, evt) => { this.Log().Info($"BufferingEnded"); };
-            MediaElement.MediaEnded += (sdr, evt) => { this.Log().Info($"MediaEnded"); };
-            MediaElement.PositionChanged += (sdr, evt) => { this.Log().Info($"PositionChanged {evt.Position}"); };
-            MediaElement.MediaFailed += (sdr, evt) => { this.Log().Info($"MediaFailed"); };
+            MediaElement.BufferingStarted += (sdr, evt) => { logger.Information($"BufferingStarted"); };
+            MediaElement.BufferingEnded += (sdr, evt) => { logger.Information($"BufferingEnded"); };
+
+            MediaElement.MediaOpened += (sdr, evt) => { logger.Information($"MediaOpened {evt}"); };
+            MediaElement.MediaEnded += async (sdr, evt) => { logger.Information($"MediaEnded"); await MediaElement.Stop(); };
+            MediaElement.MediaFailed += (sdr, evt) => { logger.Information($"MediaFailed"); };
+
+            MediaElement.Loaded += (sdr, evt) => { logger.Information($"Loaded : NaturalDuration {MediaElement.NaturalDuration}"); };
+            MediaElement.PositionChanged += (sdr, evt) => { logger.Information($"PositionChanged {evt.Position}"); };
         }
 
         #endregion Public Methods

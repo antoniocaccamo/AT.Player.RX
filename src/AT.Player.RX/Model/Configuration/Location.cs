@@ -1,24 +1,26 @@
 ﻿using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
-using Splat;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+/// <summary>
+///
+/// </summary>
 namespace AT.Player.RX.Model.Configuration
 {
-    public class Location : ReactiveObject, IEnableLogger
+    using ReactiveUI.Fody.Helpers;
+    using Splat;
+    using System;
+
+    public class Location : ReactiveObject
     {
+        private static Serilog.ILogger logger = Locator.Current.GetService(typeof(Serilog.ILogger)) as Serilog.ILogger;
+
         public Location()
         {
             this.WhenAnyValue(x => x.Left)
-                .Subscribe(l => this.Log().Info($"Left changed : {l}"))
+                .Subscribe(l => logger.Information("Left changed : {l}", l))
               ;
 
             this.WhenAnyValue(x => x.Top)
-                .Subscribe(l => this.Log().Info($"Top changed : {l}"))
+                .Subscribe(l => logger.Information("Top changed : {l}", l))
               ;
         }
 

@@ -5,6 +5,9 @@
 # Exported by: Unregistered user
 # Exported at: Wed, 16 Oct 2019 15:03:19 +0200
 ---
+dummy:
+    image : "C:\\Windows\\Web\\Screen\\img100.jpg"
+    video : "C:\\Program Files\\WindowsApps\\Microsoft.Windows.Photos_2019.19071.17920.0_x64__8wekyb3d8bbwe\\AppCS\\Assets\\NewsControl_WhatsNewMedia\\620x252_favorites.mp4"
 
 computer: antonio
 version:

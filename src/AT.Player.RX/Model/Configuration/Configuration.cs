@@ -20,15 +20,18 @@ namespace AT.Player.RX.Model.Configuration
 
         public Location Location { get; set; }
 
+        public Dummy Dummy { get; set; }
+
         #endregion Public Properties
 
         #region Public Methods
 
         public override string ToString()
         {
-            return $" computer : [{Computer}] \n" +
-                $"\t size [{Size}]" +
-                $"\t location [{Location}]";
+            return $"dummy : [{Dummy}]\n" +
+                $"\tcomputer : [{Computer}]\n" +
+                $"\tsize [{Size}]\n" +
+                $"\tlocation [{Location}]\n";
         }
 
         #endregion Public Methods

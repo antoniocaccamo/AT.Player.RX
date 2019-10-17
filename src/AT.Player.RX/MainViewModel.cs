@@ -9,6 +9,8 @@
 
     public class MainViewModel : ReactiveObject, IScreen
     {
+        private static ILogger logger = Locator.Current.GetService(typeof(Serilog.ILogger)) as ILogger;
+
         // The Router associated with this Screen.
         // Required by the IScreen interface.
         public RoutingState Router { get; }

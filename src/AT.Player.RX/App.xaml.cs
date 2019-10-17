@@ -2,6 +2,7 @@
 using ReactiveUI;
 using Serilog;
 using Splat;
+using Splat.Serilog;
 using System;
 using System.Reflection;
 using System.Windows;
@@ -13,7 +14,7 @@ namespace AT.Player.RX
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : Application, IEnableLogger
     {
         public App()
         {
@@ -28,24 +29,17 @@ namespace AT.Player.RX
             // I only want to hear about errors
             var logger = //new DebugLogger() { Level = LogLevel.Error }
                 new LoggerConfiguration()
-                    // .Enrich.With(new ThreadIdEnricher())
+                    .Enrich.WithThreadName()
+                    .Enrich.WithThreadId()
+                    .Enrich.FromLogContext()
                     .WriteTo.Console(
-                        outputTemplate: "{Timestamp:HH:mm} [{Level}]  {Message}{NewLine}{Exception}")
+                        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}]  {Properties} - {Message:lj} {NewLine}{Exception}"
+                    )
                     .CreateLogger();
             ;
+
+            Locator.CurrentMutable.UseSerilogFullLogger();
             Locator.CurrentMutable.RegisterConstant(logger, typeof(Serilog.ILogger));
-
-            Locator.CurrentMutable.RegisterConstant(
-                //"file:///E:/workspaces/antoniocaccamo/2019-06-10-FuoriCinema%20(Vigan%C3%B2).mp4",
-                "C:\\Program Files\\WindowsApps\\Microsoft.Windows.Photos_2019.19071.17920.0_x64__8wekyb3d8bbwe\\AppCS\\Assets\\NewsControl_WhatsNewMedia\\620x252_favorites.mp4",
-                typeof(VideoView)
-            );
-
-            Locator.CurrentMutable.RegisterConstant(
-               // "file:///E:/workspaces/antoniocaccamo/at-adv/html/weather/images/artlogo.png",
-               "C:\\Windows\\Web\\Wallpaper\\HP\\green_leaves.jpg",
-                 typeof(ImageView)
-            );
 
             Unosquare.FFME.Library.FFmpegDirectory = @"ffmpeg";
 
@@ -53,11 +47,23 @@ namespace AT.Player.RX
                                         .WithNamingConvention(new CamelCaseNamingConvention())
                                         .IgnoreUnmatchedProperties()
                                         .Build();
-            var configuration = deserializer.Deserialize<Model.Configuration.Configuration>(System.IO.File.ReadAllText(@"prefs.yml"));
+            string yaml = System.IO.File.ReadAllText(@"prefs.yml");
+            logger.Information($"yaml : ${yaml}");
+            var configuration = deserializer.Deserialize<Model.Configuration.Configuration>(yaml);
 
-            Console.WriteLine($"configuration : ${configuration}");
+            logger.Information($"configuration : ${configuration}");
 
             Locator.CurrentMutable.RegisterConstant(configuration, typeof(Model.Configuration.Configuration));
+
+            Locator.CurrentMutable.RegisterConstant(
+                configuration.Dummy.Video,
+                typeof(VideoView)
+            );
+
+            Locator.CurrentMutable.RegisterConstant(
+               configuration.Dummy.Image,
+                 typeof(ImageView)
+            );
         }
     }
 }

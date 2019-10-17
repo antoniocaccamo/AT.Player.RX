@@ -1,24 +1,25 @@
-﻿using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
-using Splat;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿/// <summary>
+///
+/// </summary>
 namespace AT.Player.RX.Model.Configuration
 {
-    public class Size : ReactiveObject, IEnableLogger
+    using ReactiveUI;
+    using ReactiveUI.Fody.Helpers;
+    using Splat;
+    using System;
+
+    public class Size : ReactiveObject
     {
+        private static Serilog.ILogger logger = Locator.Current.GetService(typeof(Serilog.ILogger)) as Serilog.ILogger;
+
         public Size()
         {
             this.WhenAnyValue(x => x.Width)
-                .Subscribe(l => this.Log().Info($"Width changed : {l}"))
+                .Subscribe(l => logger.Information("Width changed : {l}", l))
               ;
 
             this.WhenAnyValue(x => x.Height)
-                .Subscribe(l => this.Log().Info($"Height changed : {l}"))
+                .Subscribe(l => logger.Information("Height changed : {l}", l))
               ;
         }
 
