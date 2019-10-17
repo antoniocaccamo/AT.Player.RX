@@ -22,7 +22,7 @@ namespace AT.Player.RX.Model.Configuration
 
         public Dummy Dummy { get; set; }
 
-        public IEnumerable<Screen> screens { get; set; }
+        public IEnumerable<Screen> Screens { get; set; }
 
         #endregion Public Properties
 
@@ -34,7 +34,7 @@ namespace AT.Player.RX.Model.Configuration
                 + $"\tcomputer : [{Computer}]\n"
                 + $"\tsize [{Size}]\n"
                 + $"\tlocation [{Location}]\n"
-                + $"\tscreens [{screens}]\n"; ;
+                + $"\tscreens [{Screens}]\n"; ;
         }
 
         #endregion Public Methods

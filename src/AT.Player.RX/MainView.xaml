@@ -9,7 +9,7 @@
     Height="360"
     x:TypeArguments="vm:MainViewModel">
 
-    <DockPanel>
+    <DockPanel Background="#FF109797">
         <!--<Menu DockPanel.Dock="Top" IsMainMenu="True" Height="40">
             <MenuItem Header="_File">
                 <MenuItem Header="_New" />
@@ -19,25 +19,31 @@
                 <MenuItem Header="_Exit" />
             </MenuItem>
         </Menu>-->
-        <StackPanel Background="#FF109797"
-                DockPanel.Dock="Top"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Orientation="Horizontal">
-            <Button x:Name="GoImageButton" Content="Go to Image.." />
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="GoImageButton" Content="Go to Image.." Margin="5" />
             <Button
-                    x:Name="GoVideoButton"
-                    Margin="5,0,0,0"
-                    Content="Go to Video.." />
+                Grid.Column="1"
+                        x:Name="GoVideoButton"
+                        Margin="5"
+                        Content="Go to Video.." />
             <Button
-                    x:Name="GoNugetButton"
-                    Margin="5,0,0,0"
-                    Content="Go to Nuget" />
+                Grid.Column="2"
+                        x:Name="GoNugetButton"
+                        Margin="5"
+                        Content="Go to Nuget" />
             <Button
-                    x:Name="GoBackButton"
-                    Margin="5,0,0,0"
-                    Content="Go back" />
-        </StackPanel>
+                Grid.Column="3"
+                        x:Name="GoBackButton"
+                        Margin="5"
+                        Content="Go back" />
+        </Grid>
         <!--<WrapPanel Background="Black">
             <rxui:RoutedViewHost
                 x:Name="RoutedViewHost"
@@ -52,12 +58,21 @@
 
         <Grid>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
 
-            <rxui:RoutedViewHost
+            <ListView x:Name="lv" BorderThickness="2" BorderBrush="Black">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Size" Width="50" DisplayMemberBinding="{Binding Size}" />
+                        <GridViewColumn Header="Location" Width="50" DisplayMemberBinding="{Binding Location}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <rxui:RoutedViewHost  Grid.Column="1"
                 x:Name="RoutedViewHost"
                 HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Stretch">

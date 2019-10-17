@@ -57,6 +57,12 @@
                     v => v.Left
                 ).DisposeWith(disposables);
 
+                this.OneWayBind(
+                    ViewModel,
+                    vm => vm.Screens,
+                    v => v.lv.ItemsSource
+                ).DisposeWith(disposables);
+
                 this.WhenAnyValue(x => x.GoBackButton.IsMouseOver, x => x.ViewModel.SomeBoolValue,
                       (isMouseOver, boolValue) =>
                       {
@@ -71,20 +77,5 @@
         }
 
         #endregion Public Constructors
-
-        #region Private Methods
-
-        //private System.Windows.Size ViewModelToViewConverterFunc(Model.Configuration.Size arg)
-        //{
-        //    return new System.Windows.Size(arg.Width, arg.Height);
-        //}
-
-        //private Model.Configuration.Size ViewToViewModelConverterFunc(System.Windows.Size arg)
-        //{
-        //    Model.Configuration.Size size = new Model.Configuration.Size(arg.Width, arg.Height);
-        //    return size;
-        //}
-
-        #endregion Private Methods
     }
 }

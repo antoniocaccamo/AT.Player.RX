@@ -5,11 +5,15 @@
     using ReactiveUI;
     using ReactiveUI.Fody.Helpers;
     using Splat;
+    using System.Collections.Generic;
     using System.Reactive;
+    using System.Reactive.Linq;
 
     public class MainViewModel : ReactiveObject, IScreen
     {
-        private static ILogger logger = Locator.Current.GetService(typeof(Serilog.ILogger)) as ILogger;
+        private static readonly ILogger logger = Locator.Current.GetService(typeof(Serilog.ILogger)) as ILogger;
+
+        private readonly ObservableAsPropertyHelper<IEnumerable<ScreenListItemViewModel>> _screens;
 
         // The Router associated with this Screen.
         // Required by the IScreen interface.
@@ -31,6 +35,8 @@
         [Reactive]
         public Configuration Configuration { get; internal set; }
 
+        public IEnumerable<ScreenListItemViewModel> Screens => _screens.Value;
+
         public MainViewModel()
         {
             // Initialize the Router.
@@ -51,6 +57,13 @@
             SomeBoolValue = false;
 
             Configuration = Locator.Current.GetService(typeof(Configuration)) as Configuration;
+
+            _searchResults = this
+               .WhenAnyValue(x => x.Configuration.Screens.ToObservable())
+               .Select(x => new ScreenListItemViewModel(x))
+                .ToProperty(this, x => x.Screens);
+            ;
+            ;
         }
     }
 }

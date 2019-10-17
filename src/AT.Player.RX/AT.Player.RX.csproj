@@ -247,9 +247,14 @@
     <Compile Include="Model\Configuration\Dummy.cs" />
     <Compile Include="Model\Configuration\Location.cs" />
     <Compile Include="Model\Configuration\Size.cs" />
+    <Compile Include="ViewModels\ScreenListItemViewModel.cs" />
     <Compile Include="ViewModels\VideoViewModel.cs" />
+    <Compile Include="Views\BaseScreenListView.cs" />
     <Compile Include="Views\BaseVideoView.cs" />
     <Compile Include="Views\BaseImageView.cs" />
+    <Compile Include="Views\ScreenListItemView.xaml.cs">
+      <DependentUpon>ScreenListItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VideoView.xaml.cs">
       <DependentUpon>VideoView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -288,6 +293,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\NugetDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ScreenListItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

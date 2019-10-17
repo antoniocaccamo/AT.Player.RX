@@ -11,7 +11,7 @@ namespace AT.Player.RX.Model.Configuration
 
     public class Location : ReactiveObject
     {
-        private static Serilog.ILogger logger = Locator.Current.GetService(typeof(Serilog.ILogger)) as Serilog.ILogger;
+        private static readonly Serilog.ILogger logger = Locator.Current.GetService(typeof(Serilog.ILogger)) as Serilog.ILogger;
 
         public Location()
         {
