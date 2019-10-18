@@ -9,6 +9,8 @@ dummy:
     image : "C:\\Windows\\Web\\Screen\\img100.jpg"
     video : "C:\\Program Files\\WindowsApps\\Microsoft.Windows.Photos_2019.19071.17920.0_x64__8wekyb3d8bbwe\\AppCS\\Assets\\NewsControl_WhatsNewMedia\\620x252_favorites.mp4"
 
+ffmpeg : 
+    path: C:\\ffmpeg
 computer: antonio
 version:
 0: F1.3

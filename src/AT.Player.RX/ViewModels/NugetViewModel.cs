@@ -111,7 +111,7 @@
             string term, CancellationToken token)
         {
             var providers = new List<Lazy<INuGetResourceProvider>>();
-            providers.AddRange(Repository.Provider.GetCoreV3()); // Add v3 API support
+            //providers.AddRange(Repository.Provider.GetCoreV3()); // Add v3 API support
             var package = new PackageSource("https://api.nuget.org/v3/index.json");
             var source = new SourceRepository(package, providers);
 

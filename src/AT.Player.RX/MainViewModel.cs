@@ -58,13 +58,10 @@
 
             Configuration = Locator.Current.GetService(typeof(Configuration)) as Configuration;
 
-            //ObservableAsPropertyHelper<ScreenListItemViewModel>.
-            //_searchResults = this
-            //   .WhenAnyValue(x => x.Configuration.Screens.To())
-            //   .Select(x => new ScreenListItemViewModel(x.First()))
-            //    .ToProperty(this, x => x.);
-            //;
-            //;
+            _screens = Configuration.Screens.ToObservable()
+                .Select(x => new ScreenListItemViewModel(x))
+                .ToList()
+                .ToProperty(this, x => x.Screens);
         }
     }
 }

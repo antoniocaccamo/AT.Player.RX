@@ -11,6 +11,10 @@ namespace AT.Player.RX.ViewModels
     using System.Reactive;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using System.Windows;
+
+    //using System.Windows.Controls;
+
     using Unosquare.FFME;
 
     public class VideoViewModel : ReactiveObject, IRoutableViewModel, IEnableLogger
@@ -53,9 +57,15 @@ namespace AT.Player.RX.ViewModels
             MediaElement.BufferingStarted += (sdr, evt) => { logger.Information($"BufferingStarted"); };
             MediaElement.BufferingEnded += (sdr, evt) => { logger.Information($"BufferingEnded"); };
 
-            MediaElement.MediaOpened += (sdr, evt) => { logger.Information($"MediaOpened {evt.Info.Duration}"); };
+            MediaElement.MediaOpened += (sdr, evt) => logger.Information($"MediaOpened - Duration : {evt.Info.Duration}");
+
             MediaElement.MediaEnded += async (sdr, evt) => { logger.Information($"MediaEnded"); await MediaElement.Stop(); };
-            MediaElement.MediaFailed += (sdr, evt) => { logger.Information($"MediaFailed"); };
+            MediaElement.MediaFailed += (sdr, evt) =>
+            {
+                logger.Information("MediaFailed : {0}",
+MessageBox.Show(
+evt.ErrorException.Message));
+            };
 
             MediaElement.Loaded += (sdr, evt) => { logger.Information($"Loaded  {evt}"); };
             MediaElement.PositionChanged += (sdr, evt) => { logger.Information($"PositionChanged {evt.Position}"); };

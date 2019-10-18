@@ -1,4 +1,4 @@
-﻿<v:ScreenListItemView
+﻿<v:BaseScreenListView
     x:Class="AT.Player.RX.Views.ScreenListItemView"
      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -13,7 +13,7 @@
             <ColumnDefinition  Width="1*" />
             <ColumnDefinition  Width="1*" />
         </Grid.ColumnDefinitions>
-        <Label x:Name="Size" />
-        <Label x:Name="Location" />
+        <TextBlock x:Name="Size" />
+        <TextBlock x:Name="Location" Grid.Column="1" />
     </Grid>
-</v:ScreenListItemView>
+</v:BaseScreenListView>

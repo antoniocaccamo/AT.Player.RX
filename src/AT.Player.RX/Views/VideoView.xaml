@@ -13,18 +13,19 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
+            <!--<RowDefinition Height="1*" />-->
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ffme:MediaElement x:Name="me" Stretch="Fill"
+        <ffme:MediaElement x:Name="me" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                            Background="Black" LoadedBehavior="Manual" />
-        <!--
-        <MediaElement HorizontalAlignment="Stretch"
-                      VerticalAlignment="Stretch"
-                      Stretch="Fill" LoadedBehavior="Manual"
-                      x:Name="me" />-->
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15" Height="40">
+        <!--<MediaElement Grid.Row="1" HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      Stretch="Fill" LoadedBehavior="Play"
+                      x:Name="meOld" />-->
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
             <Button x:Name="PlayButton" Content="Play.." Click="PlayButton_Click" />
         </StackPanel>
     </Grid>

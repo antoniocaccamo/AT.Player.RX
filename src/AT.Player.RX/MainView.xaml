@@ -63,16 +63,19 @@
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
 
-            <ListView x:Name="lv" BorderThickness="2" BorderBrush="Black">
+            <!--ListView x:Name="lv" BorderThickness="2" BorderBrush="Black">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Size" Width="50" DisplayMemberBinding="{Binding Size}" />
                         <GridViewColumn Header="Location" Width="50" DisplayMemberBinding="{Binding Location}" />
                     </GridView>
                 </ListView.View>
-            </ListView>
+                </ListView> -->
 
-            <rxui:RoutedViewHost  Grid.Column="1"
+            <ListBox
+                    x:Name="lv" BorderThickness="1" BorderBrush="Black" />
+
+            <rxui:RoutedViewHost  Grid.Column="1" BorderThickness="1" BorderBrush="Black"
                 x:Name="RoutedViewHost"
                 HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Stretch">

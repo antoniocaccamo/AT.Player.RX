@@ -2,6 +2,7 @@
 {
     using AT.Player.RX.Model.Configuration;
     using ReactiveUI;
+    using Splat;
     using System;
     using System.Reactive.Disposables;
     using System.Windows;
@@ -12,6 +13,8 @@
     /// </summary>
     public partial class MainView : ReactiveWindow<MainViewModel>
     {
+        private static readonly Serilog.ILogger logger = Locator.Current.GetService(typeof(Serilog.ILogger)) as Serilog.ILogger;
+
         #region Public Constructors
 
         public MainView()
@@ -73,6 +76,23 @@
                       })
                       .BindTo(this, view => view.GoBackButton.Background)
                       .DisposeWith(disposables);
+
+                this.Events()
+                    .SizeChanged
+                    .Subscribe(evt =>
+                        {
+                            logger.Warning("SizeChanged : old {0}, new {1}", evt.PreviousSize, evt.NewSize);
+                            // ViewModel.Configuration.Size = new Model.Configuration.Size(evt.NewSize);
+                        }
+                    );
+                this.Events()
+                    .LocationChanged
+                    .Subscribe(evt =>
+                    {
+                        logger.Warning("LocationChanged : evt {0}", evt);
+                        // ViewModel.Configuration.Size = new Model.Configuration.Size(evt.NewSize);
+                    }
+                    );
             });
         }
 

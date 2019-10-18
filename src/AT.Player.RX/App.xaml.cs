@@ -4,6 +4,7 @@ using Serilog;
 using Splat;
 using Splat.Serilog;
 using System;
+using System.IO;
 using System.Reflection;
 using System.Windows;
 using YamlDotNet.Serialization;
@@ -41,17 +42,20 @@ namespace AT.Player.RX
             Locator.CurrentMutable.UseSerilogFullLogger();
             Locator.CurrentMutable.RegisterConstant(logger, typeof(Serilog.ILogger));
 
-            Unosquare.FFME.Library.FFmpegDirectory = @"ffmpeg";
-
             var deserializer = new DeserializerBuilder()
                                         .WithNamingConvention(new CamelCaseNamingConvention())
                                         .IgnoreUnmatchedProperties()
                                         .Build();
             string yaml = System.IO.File.ReadAllText(@"prefs.yml");
-            logger.Information($"yaml : ${yaml}");
+            logger.Debug($"yaml : ${yaml}");
             var configuration = deserializer.Deserialize<Model.Configuration.Configuration>(yaml);
 
             logger.Information($"configuration : ${configuration}");
+
+            Unosquare.FFME.Library.FFmpegDirectory = configuration.Ffmpeg.Path;
+            Unosquare.FFME.Library.EnableWpfMultiThreadedVideo = true;
+
+            logger.Information("Unosquare.FFME.Library.FFmpegDirectory : {0}", Unosquare.FFME.Library.FFmpegDirectory);
 
             Locator.CurrentMutable.RegisterConstant(configuration, typeof(Model.Configuration.Configuration));
 

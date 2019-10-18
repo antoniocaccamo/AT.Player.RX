@@ -39,11 +39,11 @@
 
         #endregion Public Constructors
 
-        private async System.Threading.Tasks.Task PlayButton_ClickAsync(object sender, RoutedEventArgs e)
-        {
-            this.Log().Info("PlayButton_ClickAsync...");
-            await me.Play();
-        }
+        //private async System.Threading.Tasks.Task PlayButton_ClickAsync(object sender, RoutedEventArgs e)
+        //{
+        //    this.Log().Info("PlayButton_ClickAsync...");
+        //     me.Play();
+        //}
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {

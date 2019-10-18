@@ -20,7 +20,13 @@ namespace AT.Player.RX.Model.Configuration
 
             this.WhenAnyValue(x => x.Height)
                 .Subscribe(l => logger.Information("Height changed : {l}", l))
-              ;
+              ; ;
+        }
+
+        public Size(System.Windows.Size _size) : base()
+        {
+            Width = _size.Width;
+            Height = _size.Height;
         }
 
         //public Size(double w, double h)
