@@ -1,4 +1,5 @@
-﻿using AT.Player.RX.Views;
+﻿using AT.Player.RX.Model.Configuration;
+using AT.Player.RX.Views;
 using ReactiveUI;
 using Serilog;
 using Splat;
@@ -47,8 +48,8 @@ namespace AT.Player.RX
                                         .IgnoreUnmatchedProperties()
                                         .Build();
             string yaml = System.IO.File.ReadAllText(@"prefs.yml");
-            logger.Debug($"yaml : ${yaml}");
-            var configuration = deserializer.Deserialize<Model.Configuration.Configuration>(yaml);
+            logger.Information($"yaml : ${yaml}");
+            var configuration = deserializer.Deserialize<Configuration>(yaml);
 
             logger.Information($"configuration : ${configuration}");
 
