@@ -45,7 +45,7 @@
         <PackageReference Include="MaterialDesignColors" Version="1.2.0" />
         <PackageReference Include="MaterialDesignThemes" Version="2.6.0" />
         <PackageReference Include="Mono.Cecil" Version="0.9.6.1" />
-        <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="NuGet.Client" Version="4.2.0" />
         <PackageReference Include="NuGet.Common" Version="4.2.0" />
         <PackageReference Include="NuGet.Configuration" Version="4.2.0" />
